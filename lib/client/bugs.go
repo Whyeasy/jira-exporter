@@ -29,7 +29,7 @@ func getBugsMTTR(c *ExporterClient) (*[]BugsHistogram, error) {
 	case c.jiraKeyExclude != "":
 		jql = fmt.Sprintf("issuetype = Bug AND resolutiondate != null AND project NOT IN (%s)", c.jiraKeyExclude)
 	case c.jiraKeyInclude != "":
-		jql = fmt.Sprintf("issuetype = Bug AND resolutiondate != null AND project NOT IN (%s)", c.jiraKeyInclude)
+		jql = fmt.Sprintf("issuetype = Bug AND resolutiondate != null AND project IN (%s)", c.jiraKeyInclude)
 	default:
 		jql = "issuetype = Bug AND resolutiondate != null"
 	}
@@ -99,7 +99,7 @@ func getBugs(c *ExporterClient) (*[]Bugs, error) {
 	case c.jiraKeyExclude != "":
 		jql = fmt.Sprintf("issuetype = Bug AND project NOT IN (%s)", c.jiraKeyExclude)
 	case c.jiraKeyInclude != "":
-		jql = fmt.Sprintf("issuetype = Bug AND project NOT IN (%s)", c.jiraKeyInclude)
+		jql = fmt.Sprintf("issuetype = Bug AND project IN (%s)", c.jiraKeyInclude)
 	default:
 		jql = "issuetype = Bug"
 	}

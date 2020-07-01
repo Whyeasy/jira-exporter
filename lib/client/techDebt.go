@@ -29,7 +29,7 @@ func getTbMTTR(c *ExporterClient) (*[]TechDebtHistogram, error) {
 	case c.jiraKeyExclude != "":
 		jql = fmt.Sprintf("issuetype != Epic AND resolutiondate != null AND project NOT IN (%s) AND labels IN (%s)", c.jiraKeyExclude, c.logsFilter)
 	case c.jiraKeyInclude != "":
-		jql = fmt.Sprintf("issuetype != Epic AND resolutiondate != null AND project NOT IN (%s) AND labels IN (%s)", c.jiraKeyInclude, c.logsFilter)
+		jql = fmt.Sprintf("issuetype != Epic AND resolutiondate != null AND project IN (%s) AND labels IN (%s)", c.jiraKeyInclude, c.logsFilter)
 	default:
 		jql = fmt.Sprintf("issuetype != Epic AND resolutiondate != null AND labels IN (%s)", c.logsFilter)
 	}
@@ -99,7 +99,7 @@ func getTb(c *ExporterClient) (*[]TechDebt, error) {
 	case c.jiraKeyExclude != "":
 		jql = fmt.Sprintf("issuetype != Epic AND project NOT IN (%s) AND labels IN (%s)", c.jiraKeyExclude, c.logsFilter)
 	case c.jiraKeyInclude != "":
-		jql = fmt.Sprintf("issuetype != Epic AND project NOT IN (%s) AND labels IN (%s)", c.jiraKeyInclude, c.logsFilter)
+		jql = fmt.Sprintf("issuetype != Epic AND project IN (%s) AND labels IN (%s)", c.jiraKeyInclude, c.logsFilter)
 	default:
 		jql = fmt.Sprintf("issuetype != Epic AND labels IN (%s)", c.logsFilter)
 	}
