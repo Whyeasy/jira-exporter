@@ -58,7 +58,7 @@ func getBugsMTTR(c *ExporterClient) (*[]BugsHistogram, error) {
 		}
 	}
 
-	promBucket := prometheus.ExponentialBuckets(7200, 2, 8)
+	promBucket := prometheus.ExponentialBuckets(7200, 2, 10)
 
 	var results []BugsHistogram
 
