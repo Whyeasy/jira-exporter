@@ -34,7 +34,7 @@ func New(c *client.ExporterClient) *Collector {
 		bugsMTTR: prometheus.NewDesc("jira_bugs_mttr", "Histogram metric which contains the duration between reporting and completing a bug within Jira", []string{"project_key"}, nil),
 		bugs:     prometheus.NewDesc("jira_bugs_total", "Total amount of bugs within a project", []string{"project_key", "done"}, nil),
 
-		tbMTTR: prometheus.NewDesc("jira_tb_mttr", "Histogram metric which contains the duration between creating and finishing stories marked as technical debt within Jira", []string{"project_keyh"}, nil),
+		tbMTTR: prometheus.NewDesc("jira_tb_mttr", "Histogram metric which contains the duration between creating and finishing stories marked as technical debt within Jira", []string{"project_key"}, nil),
 		tb:     prometheus.NewDesc("jira_tb_total", "Total amount of stories within a project marked as technical debt within Jira", []string{"project_key", "done"}, nil),
 	}
 }
