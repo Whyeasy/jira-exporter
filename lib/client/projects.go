@@ -13,7 +13,7 @@ func getProjects(c *ExporterClient) (*[]ProjectStats, error) {
 
 	var result []ProjectStats
 
-	projects, err := c.jc.ListProjects()
+	projects, err := c.jc.ListProjects("software")
 	if err != nil {
 		return nil, err
 	}

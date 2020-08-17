@@ -42,9 +42,9 @@ type ProjectListResponse struct {
 }
 
 //ListProjects requests all projects from Jira, paginated.
-func (c *Client) ListProjects() (*ProjectListResponse, error) {
+func (c *Client) ListProjects(typeKey string) (*ProjectListResponse, error) {
 
-	url := fmt.Sprintf("%s/rest/api/3/project/search", c.jiraURI)
+	url := fmt.Sprintf("%s/rest/api/3/project/search?typeKey=%s", c.jiraURI, typeKey)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
