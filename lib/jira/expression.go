@@ -61,7 +61,7 @@ func (c *Client) expression(opt *ListOptions, expression string, jql string) (*E
 }
 
 //DoExpression Executes the expression function and takes care of the pagination.
-func (c *Client) DoExpression(exp string, jql string) ([]*ExpressionResult, error) {
+func (c *Client) DoExpression(max int, exp string, jql string) ([]*ExpressionResult, error) {
 	var results []*ExpressionResult
 
 	startAt := 0
@@ -69,7 +69,7 @@ func (c *Client) DoExpression(exp string, jql string) ([]*ExpressionResult, erro
 	for {
 
 		result, err := c.expression(&ListOptions{
-			MaxResult: 1000,
+			MaxResult: max,
 			StartAt:   startAt,
 		},
 			exp,

@@ -35,6 +35,7 @@ func getTbMTTR(c *ExporterClient) (*[]TechDebtHistogram, error) {
 	}
 
 	apiResults, err := c.jc.DoExpression(
+		1000,
 		"issues.reduce((result, issue) => result.set(issue.project.key, (result[issue.project.key] || {}).set(issue.key, ((result[issue.project.key] || {})[issue.key] || 0) + issue.resolutionDate.getTime() - issue.created.getTime())), new Map())",
 		jql)
 	if err != nil {
@@ -105,6 +106,7 @@ func getTb(c *ExporterClient) (*[]TechDebt, error) {
 	}
 
 	apiResults, err := c.jc.DoExpression(
+		1000,
 		"issues.reduce((result, issue) => result.set(issue.project.key, (result[issue.project.key] || {}).set(issue.status.name == 'Done' ? 'DONE' : 'NOT_DONE', ((result[issue.project.key] || {})[issue.status.name == 'Done' ? 'DONE' : 'NOT_DONE'] || 0) + 1)), new Map())",
 		jql)
 	if err != nil {
