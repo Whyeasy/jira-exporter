@@ -10,4 +10,5 @@ type Config struct {
 	JiraKeyExclude string
 	JiraKeyInclude string
 	JiraTbLabels   string
+	Interval       string
 }

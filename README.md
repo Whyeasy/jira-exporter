@@ -30,6 +30,8 @@ Change listening port of the exporter; `--listenAddress <string>` or as env vari
 
 Change listening path of the exporter; `--listenPath <string>` or as env variable `LISTEN_PATH`. Default = `/metrics`
 
+Change the interval of retrieving data in the background; `--interval <string>` or as env variable `INTERVAL`. Default is `60`
+
 To include or exclude projects from the Bugs metrics, please provide a comma separated string with the project keys. Please only provide 1.
 
 Either with `--jiraKeyExclude <string>` or `--jiraKeyInclude <string>`. You can also provide it via env variables `JIRA_KEY_EXCL` or `JIRA_KEY_INCL`.

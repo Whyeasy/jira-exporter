@@ -30,6 +30,7 @@ func init() {
 	flag.StringVar(&config.JiraKeyExclude, "jiraKeyExclude", os.Getenv("JIRA_KEY_EXCL"), "Comma seperated string with Project Keys to exclude from queries.")
 	flag.StringVar(&config.JiraKeyInclude, "jiraKeyInclude", os.Getenv("JIRA_KEY_INCL"), "Comma seperated string with Project Keys to include in queries.")
 	flag.StringVar(&config.JiraTbLabels, "jiraTbLabels", os.Getenv("JIRA_TB_LABELS"), "Comma seperated string with Label(s) that define tech-debt issues")
+	flag.StringVar(&config.Interval, "interval", os.Getenv("INTERVAL"), "Provide a interval on what rate the Jira Service Desk API should be scraped.")
 }
 
 func main() {
@@ -81,6 +82,12 @@ func parseConfig() error {
 		}
 		if f.Name == "listenPath" && (f.Value.String() == "" || f.Value.String() == "0") {
 			err = f.Value.Set("/metrics")
+			if err != nil {
+				log.Error(err)
+			}
+		}
+		if f.Name == "interval" && (f.Value.String() == "" || f.Value.String() == "0") {
+			err = f.Value.Set("60")
 			if err != nil {
 				log.Error(err)
 			}
